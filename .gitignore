@@ -1,0 +1,19 @@
+target/
+build/
+out/
+*.class
+*.log
+logs/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Секреты и локальное окружение
+.env
+*.local.yml
+

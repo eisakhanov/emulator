@@ -1,0 +1,10 @@
+# Контекст docker build — только то, что нужно для сборки
+target/
+.idea/
+.vscode/
+*.iml
+*.log
+docs/
+emulator-devices.yml
+README.md
+docker-compose.yml

@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: device-emulator
+  config:
+    # Парк устройств подключается отдельным файлом — его можно переопределить
+    # снаружи (volume в docker-compose), не пересобирая приложение.
+    import: "optional:classpath:emulator-devices.yml,optional:file:./emulator-devices.yml"
+
+server:
+  port: 8085
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+emulator:
+  # Период пересчёта значений метрик.
+  tick-interval: 1s
+  snmp:
+    # false — не поднимать SNMP-агентов (отладка REST, часть тестов).
+    enabled: true
+    bind-address: 0.0.0.0
+    # Корень собственного OID-дерева проекта (критерий №18).
+    # 1.3.6.1.4.1 = private.enterprises; 99990 — плейсхолдер, заменить на
+    # согласованный со справочником NMS номер при его получении.
+    base-oid: 1.3.6.1.4.1.99990
+    # Строгая проверка community: чужая -> дроп пакета (клиент видит таймаут).
+    validate-community: true
+
+logging:
+  level:
+    ru.mininms.emulator: info
+    org.snmp4j: warn

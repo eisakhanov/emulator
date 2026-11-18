@@ -1,0 +1,8 @@
+# Единые переводы строк для команды (ментор на Windows, студенты — любая ОС)
+* text=auto eol=lf
+
+# Бинарные файлы
+*.jar binary
+*.png binary
+*.gif binary
+*.ico binary
